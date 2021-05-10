@@ -1,27 +1,20 @@
 import React from 'react';
+import Contenedor from "./componentes/Contenedor";
 import styled from 'styled-components';
-import ComponenteApartado from "./componentes/ComponenteApartado";
+
+const Container = styled.div`
+  display: flex;
+  align-items: center;
+  height: 100vh;
+`;
 
 const App = () => {
   return (  
-    <>
-      <Widget>
-          <CampoTexto type="text" id="campText" name="campoTexto"></CampoTexto>
-      </Widget>
-      <ComponenteApartado/>
-    </>
+    <Container>
+      <Contenedor />
+    </Container>
     
   );
 }
-const Widget = styled.div`
-width:100%;
-background-color:grey;
-padding:30px;
-border:5px solid red;
-`
-const CampoTexto = styled.input`
-position: relative;
-padding: 10px;
-margin: 30px;
-`
+
 export default App;
