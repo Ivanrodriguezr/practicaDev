@@ -28,9 +28,15 @@ const Contenedor = () => {
     }
 
     const onButtonClick = () => {
-        setListaDeTareas([ ...listaDeTareas, input ]);
+        setListaDeTareas([ ...listaDeTareas, {nombre:input, id:listaDeTareas.length} ]);
     }
     
+    const deleteTask = (tareaId) => {
+        const filteredArray = listaDeTareas.filter(task => task.id !== tareaId)
+        //console.log(filteredArray)
+        setListaDeTareas(filteredArray);
+    }
+
     return (
       <Widget>
           <CampoTexto onChange={inputChange} value={input} type="text" id="campText" name="campoTexto"></CampoTexto>
@@ -39,7 +45,7 @@ const Contenedor = () => {
            </AddButton>
            {
             listaDeTareas.map( tarea => (
-                <Tarea nombre={tarea} /> 
+                <Tarea deleteT={deleteTask} tarea ={tarea}/> 
             ))
            }
       </Widget>

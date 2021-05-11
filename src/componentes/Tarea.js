@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
+
 
 const Container = styled.div`
     height: 30px;
@@ -16,18 +17,24 @@ const Button = styled.button`
 
 
 const Tarea = (props) => {
+ 
+const {deleteT , tarea} = props;
+
+    const onButtonClickDelete = () => {
+        deleteT(tarea.id);
+    }
 
     return (
         <Container>
             <div>
-                {props.nombre}
+                {tarea.nombre}
             </div>
             <div>
-                <Button>
-                    boton1 
+                <Button onClick={onButtonClickDelete}>
+                    Delete 
                 </Button>
                 <Button>
-                    boton 2
+                    Update
                 </Button>
             </div>
         </Container>
