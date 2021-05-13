@@ -41,10 +41,22 @@ const Contenedor = () => {
     const updateTask = (tareaId) =>{
         
         //listaDeTareas.map(setNewValue(input,tareaId))
-        const updatedArray = listaDeTareas.map(task =>(task.id == tareaId)?task.id = input: task)
+        //const updatedArray = listaDeTareas.map(task =>(task.id == tareaId)?(task.nombre = input): task)
+        const updatedArray = listaDeTareas.map(
+            function(task) {
+                if (task.id == tareaId){
+                    task.nombre = input;
+                }
+                return task;
+            }
+
+
+        )
+        //const updatedArray = listaDeTareas.map()
+
         //listaDeTareas.map((tareaId) => (tareaId == input.id)?)
         setListaDeTareas(updatedArray);
-
+        console.log(updatedArray)
     }
 
     return (
