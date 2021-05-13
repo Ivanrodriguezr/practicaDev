@@ -21,10 +21,15 @@ const AddButton = styled.button`
 
 const Contenedor = () => {
     const [input, setInput] = useState('');
+    const [inputFilter,setInputFilter] = useState('');
     const [listaDeTareas, setListaDeTareas] = useState([]);
 
     const inputChange = (ev) => {
         setInput(ev.target.value);
+    }
+
+    const inputChangeFilter = (ev) => {
+        setInputFilter(ev.target.value);
     }
 
     const onButtonClick = () => {
@@ -39,9 +44,6 @@ const Contenedor = () => {
 
 
     const updateTask = (tareaId) =>{
-        
-        //listaDeTareas.map(setNewValue(input,tareaId))
-        //const updatedArray = listaDeTareas.map(task =>(task.id == tareaId)?(task.nombre = input): task)
         const updatedArray = listaDeTareas.map(
             function(task) {
                 if (task.id == tareaId){
@@ -52,19 +54,29 @@ const Contenedor = () => {
 
 
         )
-        //const updatedArray = listaDeTareas.map()
-
-        //listaDeTareas.map((tareaId) => (tareaId == input.id)?)
         setListaDeTareas(updatedArray);
-        console.log(updatedArray)
+    }
+
+    const onButtonClickFilter = () => {
+        const filteredList = listaDeTareas.filter(function(task){
+            if (task.nombre == inputFilter){
+                return task;
+            }
+
+        })
+        setListaDeTareas(filteredList);
     }
 
     return (
       <Widget>
-          <CampoTexto onChange={inputChange} value={input} type="text" id="campText" name="campoTexto"></CampoTexto>
-          <AddButton onClick={onButtonClick}>
-            Agregar
-           </AddButton>
+            <CampoTexto onChange={inputChange} value={input} type="text" id="campText" name="campoTexto"></CampoTexto>
+            <AddButton onClick={onButtonClick}>
+                Agregar
+            </AddButton>
+            <CampoTexto onChange={inputChangeFilter} value={inputFilter} type="text" id="filterText" name="CampoTexto"></CampoTexto>
+            <AddButton onClick={onButtonClickFilter}>
+                Filtrar
+            </AddButton>
            {
             listaDeTareas.map( tarea => (
                 <Tarea deleteT={deleteTask} update={updateTask} tarea ={tarea}/> 
