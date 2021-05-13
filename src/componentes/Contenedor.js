@@ -37,6 +37,16 @@ const Contenedor = () => {
         setListaDeTareas(filteredArray);
     }
 
+
+    const updateTask = (tareaId) =>{
+        
+        //listaDeTareas.map(setNewValue(input,tareaId))
+        const updatedArray = listaDeTareas.map(task =>(task.id == tareaId)?task.id = input: task)
+        //listaDeTareas.map((tareaId) => (tareaId == input.id)?)
+        setListaDeTareas(updatedArray);
+
+    }
+
     return (
       <Widget>
           <CampoTexto onChange={inputChange} value={input} type="text" id="campText" name="campoTexto"></CampoTexto>
@@ -45,10 +55,13 @@ const Contenedor = () => {
            </AddButton>
            {
             listaDeTareas.map( tarea => (
-                <Tarea deleteT={deleteTask} tarea ={tarea}/> 
+                <Tarea deleteT={deleteTask} update={updateTask} tarea ={tarea}/> 
             ))
+     
            }
+
       </Widget>
+      
     )
 }
 

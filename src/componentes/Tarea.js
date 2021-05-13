@@ -18,11 +18,17 @@ const Button = styled.button`
 
 const Tarea = (props) => {
  
-const {deleteT , tarea} = props;
+const {deleteT , tarea, update} = props;
 
     const onButtonClickDelete = () => {
         deleteT(tarea.id);
     }
+
+    const onButtonClickUpdate = () => {
+        update(tarea.id)
+
+    }
+
 
     return (
         <Container>
@@ -33,7 +39,7 @@ const {deleteT , tarea} = props;
                 <Button onClick={onButtonClickDelete}>
                     Delete 
                 </Button>
-                <Button>
+                <Button onClick={onButtonClickUpdate}>
                     Update
                 </Button>
             </div>
