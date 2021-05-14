@@ -23,6 +23,7 @@ const Contenedor = () => {
     const [input, setInput] = useState('');
     const [inputFilter,setInputFilter] = useState('');
     const [listaDeTareas, setListaDeTareas] = useState([]);
+    const [list, setList] = useState([]);
 
     const inputChange = (ev) => {
         setInput(ev.target.value);
@@ -40,6 +41,8 @@ const Contenedor = () => {
         const filteredArray = listaDeTareas.filter(task => task.id !== tareaId)
         //console.log(filteredArray)
         setListaDeTareas(filteredArray);
+        
+       
     }
 
 
@@ -58,6 +61,7 @@ const Contenedor = () => {
     }
 
     const onButtonClickFilter = () => {
+        setList(listaDeTareas);
         const filteredList = listaDeTareas.filter(function(task){
             if (task.nombre == inputFilter){
                 return task;
@@ -65,6 +69,11 @@ const Contenedor = () => {
 
         })
         setListaDeTareas(filteredList);
+    }
+
+    const onButtonClickCleaner = () => {
+        setListaDeTareas(list);
+        console.log(list);
     }
 
     return (
@@ -77,13 +86,14 @@ const Contenedor = () => {
             <AddButton onClick={onButtonClickFilter}>
                 Filtrar
             </AddButton>
+            <AddButton onClick={onButtonClickCleaner}>
+                limpiar
+            </AddButton>
            {
             listaDeTareas.map( tarea => (
                 <Tarea deleteT={deleteTask} update={updateTask} tarea ={tarea}/> 
             ))
-     
            }
-
       </Widget>
       
     )
