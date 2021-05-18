@@ -34,6 +34,7 @@ const Contenedor = () => {
     }
 
     const onButtonClick = () => {
+        setInput('');
         setListaDeTareas([ ...listaDeTareas, {nombre:input, id:listaDeTareas.length} ]);
     }
     
